@@ -1,0 +1,5 @@
+#!/bin/sh
+set -e
+
+#yarn config set registry https://registry.npmjs.org/
+exec yarn run dev
