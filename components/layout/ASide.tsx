@@ -1,8 +1,4 @@
-import type { FC } from 'react';
-import Link from 'next/link';
-import Menu from '@components/common/menu';
-import Image from 'next/image'
-import Logo from '../../public/debase.svg';
+import type { FC } from 'react'
 
 const ASide: FC = () => {
   return (
@@ -29,6 +25,6 @@ const ASide: FC = () => {
       <div className='aside-bottom'></div>
     </aside>
   );
-};
+}
 
-export default ASide;
+export default ASide
