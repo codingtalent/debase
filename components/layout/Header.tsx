@@ -27,7 +27,7 @@ const Header: FC = () => {
         </div>
       </div>
     </header>
-  );
-};
+  )
+}
 
 export default Header

@@ -1,7 +1,7 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
-import Header from '@components/layout/Header';
+import Header from '@components/layout/Header'
 import ProfileTabs from '@components/pages/index/Tab'
 
 const Home: NextPage = () => {

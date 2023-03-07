@@ -24,7 +24,7 @@ const ASide: FC = () => {
       </div>
       <div className='aside-bottom'></div>
     </aside>
-  );
+  )
 }
 
 export default ASide
