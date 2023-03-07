@@ -108,7 +108,10 @@ body {
 .main .page_content .content_header_info {
   height: 220px;
 }
-.main .page_content .content_header_tab_wrap {
+.main .page_content .content_header_tab_container {
+  background: #fafbfc;
+}
+.main .page_content .content_header_tab_container .content_header_tab_wrap {
   margin-top: 36px;
   max-width: 960px;
   margin: 0 auto;
@@ -131,12 +134,13 @@ body {
   padding: 0 10px 11px;
   border-bottom: 1px solid transparent;
   font-size: 15px;
+  outline: none;
 }
 .main .page_content .content_header_tab_item:first-child {
   padding-left: 0;
   padding-right: 0;
 }
-.main .page_content .content_header_tab_item.active {
+.main .page_content .content_header_tab_item[data-headlessui-state='selected'] {
   font-weight: 600;
   color: #fe815f;
   padding-bottom: 8px;

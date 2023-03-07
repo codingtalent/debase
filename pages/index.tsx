@@ -14,17 +14,12 @@ const Home: NextPage = () => {
           <div className='content_header_info'>
 
           </div>
-          <div className='content_header_tab_wrap'>
-            <div className="content_header_tab">
-              <div className="content_header_tab_item active">Portfolio</div>
-              <div className="content_header_tab_item">History</div>
-              <ProfileTabs />
-            </div>
-          </div>
+
+          
         </div>
       </div>
 
-      <div className='tab_container'></div>
+      <ProfileTabs />
     </div>
   )
 }

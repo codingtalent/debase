@@ -2,4 +2,5 @@
 set -e
 
 #yarn config set registry https://registry.npmjs.org/
+#yarn install --frozen-lockfile
 exec yarn run dev
