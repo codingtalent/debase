@@ -13,7 +13,7 @@ const ASide: FC = () => {
           </a>
         </div>
         <div className='aside-menu'>
-          <a aria-current="page" className="item" href="/profile">
+          <a aria-current="page" className="item" href="/">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="menu-icon">
               <path d="M4.22544 9.42513V21.0681H19.7746V9.42513M1.63391 10.9924L12 2.93188L22.3661 10.9924" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"></path>
             </svg>
@@ -24,7 +24,7 @@ const ASide: FC = () => {
       </div>
       <div className='aside-bottom'></div>
     </aside>
-  );
+  )
 }
 
 export default ASide
