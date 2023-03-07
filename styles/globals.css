@@ -268,6 +268,12 @@ main .page_content .content_header_info_wrap {
   border-color: #fe815f;
 }
 
+.main .page_content .tab_container {
+  width: 85vw;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
 .header {
   border-bottom: 1px solid #e1e5f2;
   background: #fafbfc;
@@ -525,4 +531,168 @@ main .page_content .content_header_info_wrap {
   flex-direction: column;
   align-items: center;
   width: 100%;
+}
+
+/* Utilities */
+@layer utilities {
+  .bg-custom-orange {
+    background: #fe815f;
+  }
+  .bg-custom-grey {
+    background: #eff3f8;
+  }
+  .bg-custom-pink {
+    background: rgba(254,129,95,.25);
+  }
+  .text-custom-orange {
+    color: #fe815f;
+  }
+  .text-custom-grey {
+    color: #616b84;
+  }
+  .text-custom-grey2 {
+    color: #8b93a7;
+  }
+}
+
+@keyframes UpdateButton_rotating {
+  0% {
+    transform: rotate(0deg)
+  }
+
+  to {
+    transform: rotate(1turn)
+  }
+}
+
+/* Components */
+@layer components {
+  .chain-summary-card {
+    @apply bg-white rounded-md box-border p-6 shadow
+  }
+  .chain-wrap {
+    @apply gap-y-4 flex flex-wrap
+  }
+  .chain-wrap .chain-item {
+    min-width: 1rem;
+    @apply inline-flex items-center gap-2 cursor-pointer text-xs text-custom-grey hover:text-custom-orange focus:outline-none;
+  }
+  .chain-wrap .chain-item .chain-logo {
+    width: 32px;
+    height: 32px;
+  }
+  .chain-wrap .chain-item:hover .chain-logo {
+    @apply drop-shadow-xl;
+  }
+  .chain-wrap .chain-item .chain-item-text {
+    width: 142px;
+  }
+  .chain-wrap .chain-item .chain-usd {
+    @apply text-gray-900 font-bold text-base
+  }
+  .chain-wrap .chain-item:hover .chain-usd {
+    @apply text-custom-orange font-bold text-base
+  }
+
+  .protocol-wrap {
+    @apply mt-8 gap-y-2 gap-x-1 flex flex-wrap
+  }
+  .protocol-wrap .protocol-item {
+    min-width: 9.15rem;
+    @apply p-3 rounded-md inline-flex items-center gap-2 cursor-pointer text-xs font-bold text-custom-grey bg-custom-grey hover:bg-custom-pink focus:outline-none;
+  }
+  .protocol-wrap .protocol-item .protocol-logo {
+    width: 20px;
+    height: 20px;
+    @apply rounded-full
+  }
+  .protocol-logo-wrap {
+    @apply relative
+  }
+  .protocol-logo-wrap .protocol-chain {
+    width: 12px;
+    height: 12px;
+    top: -5px;
+    right: -2px;
+    @apply absolute
+  }
+  .protocol-wrap .protocol-item .protocol-usd {
+    @apply text-gray-900
+  }
+  
+  .protocol-item-container {
+    @apply mt-8
+  }
+  .protocol-item-container .card-wrap {
+    @apply bg-white rounded-md box-border shadow
+  }
+  .protocol-item-container .protocol-item-header {
+    @apply flex items-center gap-2 mb-3 justify-between
+  }
+  .protocol-item-container .protocol-item-title-wrap {
+    @apply flex items-center gap-2
+  }
+  .protocol-item-container .protocol-item-header .protocol-item-title {
+    @apply text-xl
+  }
+  .protocol-item-container .protocol-item-header .protocol-item-logo {
+    width: 24px;
+    height: 24px;
+  }
+  .protocol-item-container .protocol-item-header .protocol-item-usd {
+    @apply text-base font-bold text-gray-900
+  }
+  .protocol-item-container .card-wrap .card-panel-header {
+    @apply flex items-center py-5
+  }
+  .protocol-item-container .card-wrap .card-panel-header .card-protocol-name {
+    padding: 4px 26px;
+    @apply text-white bg-gray-400 text-xs rounded-r-md
+  }
+  .protocol-item-container .card-wrap .card-panel-container {
+    @apply p-5 pt-0
+  }
+  .protocol-item-container .card-wrap .card-panel-container .table-header {
+    min-width: 800px;
+    @apply flex
+  }
+  .protocol-item-container .card-wrap .card-panel-container .table-header > div {
+    padding: 7px 10px;
+    @apply flex-1 bg-custom-grey text-custom-grey2 text-xs font-bold
+  }
+  .protocol-item-container .card-wrap .card-panel-container .table-header > div:last-child {
+    @apply text-right
+  }
+  .protocol-item-container .card-wrap .card-panel-container .table-content-row {
+    min-height: 50px;
+    color: #19233c;
+    @apply flex items-center
+  }
+  .protocol-item-container .card-wrap .card-panel-container .table-content-row > div {
+    padding: 7px 10px;
+    font-size: 13px;
+    @apply flex-1 font-bold
+  }
+  .protocol-item-container .card-wrap .card-panel-container .table-content-row > div.flex-table-col {
+    @apply flex gap-2 items-center flex-wrap
+  }
+  .protocol-item-container .card-wrap .card-panel-container .table-content-row > div:last-child {
+    @apply text-right
+  }
+  .protocol-item-container .card-wrap .card-panel-container .table-content-row .token-icons {
+    @apply flex items-center
+  }
+  .protocol-item-container .card-wrap .card-panel-container .table-content-row .token-icons .token-icon {
+    width: 20px;
+    height: 20px;
+    @apply relative
+  }
+  
+  .loading-icon {
+    animation: UpdateButton_rotating 1s ease-in-out infinite;
+    animation-play-state: paused;
+  }
+  .loading-icon.running {
+    animation-play-state: running;
+  }
 }

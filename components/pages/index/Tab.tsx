@@ -23,8 +23,8 @@ const ProfileTabs: FC = () => {
       <Tab.Panels
         as='div'
         className='tab_container'>
-        <Tab.Panel><Portfolio /></Tab.Panel>
-        <Tab.Panel><History /></Tab.Panel>
+        <Tab.Panel unmount={false}><Portfolio /></Tab.Panel>
+        <Tab.Panel unmount={false}><History /></Tab.Panel>
       </Tab.Panels>
     </Tab.Group>
   )
