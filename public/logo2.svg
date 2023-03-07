@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 30" width="40" height="30">
+    <rect width="40" height="30" fill="#fff"></rect>
+    <text x="6px" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="monospace" font-size="26px" fill="#fe815f">D</text>
+    <text x="6px" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="monospace" font-size="10px" fill="#f4cfc6">e</text>
+    <text x="16px" y="60%" dominant-baseline="middle" text-anchor="middle" font-family="monospace" font-size="14px" fill="#f4cfc6">B</text>
+</svg>
+
