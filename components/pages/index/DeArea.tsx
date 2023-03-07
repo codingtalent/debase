@@ -4,7 +4,7 @@ export type DeAreaProps = {
   color?: string,
   tip?: boolean,
   data: Object[],
-  xKey: string,
+  xKey: any,
 }
 
 // Up: #00c087, Down: #f63d3d
