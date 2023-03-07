@@ -215,6 +215,14 @@ body {
   width: 358px;
   font-size: 14px!important;
 }
+.header_container .option .search .input:hover {
+  border: 1px solid #fe815f!important;
+  background-color: #fff!important;
+  box-shadow: 0 3px 8px 0 rgba(254,129,95,.12)!important;
+}
+.header_container .option .search .input:hover .input_wrap .input_search_icon {
+  fill: #fe815f;
+}
 .header_container .option .search .input span {
   color: rgba(137,147,167,.6);
   padding: 0 24px 0 12px;
@@ -252,6 +260,7 @@ body {
   height: -moz-min-content;
   height: min-content;
   margin-right: 8px;
+  fill: #BABEC9;
 }
 .header_container .option .search .input .input_wrap .input_input {
   flex: 1 1;
@@ -266,7 +275,32 @@ body {
   background: transparent;
   text-overflow: unset;
 }
-
+.header_container .login {
+  position: relative;
+  margin-left: 20px;
+}
+.header_container .login_button {
+  color: #fff;
+  background-color: #fe815f;
+  border-color: #fe815f;
+  min-width: 200px;
+  height: 36px;
+  padding: 0 12px;
+  font-weight: 700;
+  --border-radius: 9999px;
+  overflow: hidden;
+  position: relative;
+  border-radius: var(--border-radius);
+  border: 1px solid transparent;
+  text-align: center;
+  transition: all .3s ease-in-out;
+  font-size: 14px;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+.header_container .login_button:hover {
+  opacity: .9;
+}
 
 
 .footer {
