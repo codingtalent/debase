@@ -128,10 +128,20 @@ export const useProtocolList = (): Protocol[] => {
   return ProtocolList ?? []
 }
 
+export const useSelectedChain = () => {
+  const {
+    selectedChain,
+    updateSelectedChain
+  }: usePortfolioReturn = useContext(PortfolioContext)
+  return [selectedChain, updateSelectedChain]
+}
+
 export type usePortfolioReturn = {
   portfolio: Portfolio;
   loading: boolean;
   noData: boolean;
+  selectedChain: Chain | null;
+  updateSelectedChain: any;
 }
 type usePortfolioFunc = () => usePortfolioReturn
 type apiData = {
@@ -142,6 +152,15 @@ export const useAsyncPortfolio: usePortfolioFunc = () => {
   const [portfolio, setPortfolio] = useState<Portfolio>(initPortfolio);
   const [loading, setLoading] = useState<boolean>(true);
   const [noData, setNoData] = useState<boolean>(false);
+  const [selectedChain, setSelectedChain] = useState<Chain|null>(null);
+  const updateSelectedChain = (c: Chain) => {
+    if (selectedChain?.id === c.id) {
+      setSelectedChain(null)
+    } else {
+      setSelectedChain(c)
+    }
+  }
+  
   const {
     routerReady,
     router
@@ -152,13 +171,6 @@ export const useAsyncPortfolio: usePortfolioFunc = () => {
 
   useEffect(() => {
     const fetchApi = async () => {
-      /*const cachedData: any = window.localStorage.getItem('portfolio');
-      if (cachedData) {
-        setLoading(false)
-        setPortfolio(JSON.parse(cachedData))
-        return
-      }*/
-
       if (!address) {
         if (routerReady) {
           setLoading(false);
@@ -210,12 +222,7 @@ export const useAsyncPortfolio: usePortfolioFunc = () => {
           0
         )
       }
-
-      /*window.localStorage.setItem('portfolio', JSON.stringify({
-        UserChainList: chains.data,
-        WalletTokenList: tokens.data,
-        ProtocolList: protocols.data
-      }))*/
+      
       setPortfolio({
         UserChainList: chains.data,
         WalletTokenList: tokens.data,
@@ -229,7 +236,9 @@ export const useAsyncPortfolio: usePortfolioFunc = () => {
   return {
     portfolio,
     loading,
-    noData
+    noData,
+    selectedChain,
+    updateSelectedChain
   }
 }
 

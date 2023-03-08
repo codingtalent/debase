@@ -1,16 +1,19 @@
 import type { FC } from 'react'
 import Table from '@components/common/Table'
-import { useWalletTokenList, useUserChainList, Token, Chain } from '@lib/hooks/portfolio'
+import {useWalletTokenList, useUserChainList, Token, Chain, useSelectedChain} from '@lib/hooks/portfolio'
 import { formatDollar } from '@lib/utils'
 
 const WalletToken: FC = () => {
   const walletTokenList = useWalletTokenList();
   const userChainList = useUserChainList();
+  const [selectedChain] = useSelectedChain();
   if (!walletTokenList?.length || !userChainList?.length) {
     return null
   }
   
-  const walletAmount = walletTokenList.reduce(
+  const walletAmount = walletTokenList.filter((t: Token) => (
+    !selectedChain || selectedChain?.id === t.chain
+  )).reduce(
     (accumulator: number, token: Token) => accumulator + token.amount * token.price,
     0
   )
@@ -42,21 +45,12 @@ const WalletToken: FC = () => {
             { title: 'USD Value' }
           ]}>
             {
-              walletTokenList.sort((a: Token, b: Token) => (
+              walletTokenList.filter((t: Token) => (
+                !selectedChain || selectedChain?.id === t.chain
+              )).sort((a: Token, b: Token) => (
                 (b.price * b.amount) - (a.price * a.amount)
               )).map((token: Token) => (
                 <div className="table-content-row border-b" key={`${token.chain}_${token.id}`}>
-                {/*<div className="flex-table-col">
-                    <div className="token-icons">
-                      <img src="https://static.debank.com/image/eth_token/logo_url/0x0c10bf8fcb7bf5412187a595ab97a3609160b5c6/70890e6172f62f4430bfeaff32680884.png" alt=""/>
-                      <img src="https://static.debank.com/image/eth_token/logo_url/0x6b175474e89094c44da98b954eedeac495271d0f/549c4205dbb199f1b8b03af783f35e71.png" alt=""/>
-                      <img src="https://static.debank.com/image/coin/logo_url/usdc/e87790bfe0b3f2ea855dc29069b38818.png" alt=""/>
-                      <img src="https://static.debank.com/image/coin/logo_url/usdt/23af7472292cb41dc39b3f1146ead0fe.png" alt=""/>
-                    </div>
-                    <div>
-                      USDD + BUSD
-                    </div>
-                  </div>*/}
                   <div className="flex-table-col">
                     <div className="token-icons">
                       <div className="protocol-logo-wrap">

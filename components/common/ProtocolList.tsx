@@ -1,17 +1,28 @@
 import type { FC } from 'react'
 import { scrollToArchor } from '@lib/utils'
-import { useWalletTokenList, useProtocolList, useUserChainList, Chain, Token, Protocol } from '@lib/hooks/portfolio'
+import {
+  useWalletTokenList,
+  useProtocolList,
+  useUserChainList,
+  Chain,
+  Token,
+  Protocol,
+  useSelectedChain
+} from '@lib/hooks/portfolio'
 import { formatDollar } from '@lib/utils'
 
 const ProtocolList: FC = () => {
   const protocolList = useProtocolList();
   const walletTokenList = useWalletTokenList();
   const userChainList = useUserChainList();
+  const [selectedChain] = useSelectedChain();
   if (!walletTokenList?.length || !userChainList?.length || !protocolList?.length) {
     return null
   }
   
-  const walletAmount = walletTokenList.reduce(
+  const walletAmount = walletTokenList.filter((t: Token) => (
+    !selectedChain || selectedChain?.id === t.chain
+  )).reduce(
     (accumulator: number, token: Token) => accumulator + token.amount * token.price,
     0
   )
@@ -31,7 +42,9 @@ const ProtocolList: FC = () => {
       </div>
       
       {
-        protocolList.sort((a: Protocol, b: Protocol) => (
+        protocolList.filter((p: Protocol) => (
+          !selectedChain || selectedChain?.id === p.chain
+        )).sort((a: Protocol, b: Protocol) => (
           b.asset_usd_value - a.asset_usd_value
         )).map((p: Protocol) => (
           <div className="protocol-item" key={`${p.chain}_${p.id}`} onClick={() => scrollToArchor(`#${p.id}`)}>

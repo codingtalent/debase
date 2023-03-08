@@ -583,11 +583,15 @@ main .page_content .content_header_info_wrap {
     min-width: 1rem;
     @apply inline-flex items-center gap-2 cursor-pointer text-xs text-custom-grey hover:text-custom-orange focus:outline-none;
   }
+  .chain-wrap .chain-item.active {
+    @apply text-custom-orange;
+  }
   .chain-wrap .chain-item .chain-logo {
     width: 32px;
     height: 32px;
   }
-  .chain-wrap .chain-item:hover .chain-logo {
+  .chain-wrap .chain-item:hover .chain-logo,
+  .chain-wrap .chain-item.active .chain-logo {
     @apply drop-shadow-xl;
   }
   .chain-wrap .chain-item .chain-item-text {
@@ -596,7 +600,8 @@ main .page_content .content_header_info_wrap {
   .chain-wrap .chain-item .chain-usd {
     @apply text-gray-900 font-bold text-base
   }
-  .chain-wrap .chain-item:hover .chain-usd {
+  .chain-wrap .chain-item:hover .chain-usd,
+  .chain-wrap .chain-item.active .chain-usd {
     @apply text-custom-orange font-bold text-base
   }
 

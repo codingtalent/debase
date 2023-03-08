@@ -1,11 +1,10 @@
 import type { FC } from 'react'
-import { useRouter } from 'next/router'
 import ChainList from '@components/common/ChainList'
 import ProtocolList from '@components/common/ProtocolList'
 import WalletToken from '@components/common/WalletToken'
-import Loading from '@components/common/Loading'
 import { useAsyncPortfolio, PortfolioContext } from '@lib/hooks/portfolio'
 import ProtocolTokenList from '@components/common/ProtocolTokenList'
+import SkeletonCard from '@components/common/SkeletonCard'
 
 const Portfolio: FC = () => {
   const portfolio = useAsyncPortfolio()
@@ -17,7 +16,7 @@ const Portfolio: FC = () => {
     <PortfolioContext.Provider value={portfolio}>
       <div className="pt-6 pb-6">
         {
-          loading ? (<Loading/>) : (
+          loading ? (<SkeletonCard/>) : (
             !noData && (
               <>
                 <div className="chain-summary-card">
