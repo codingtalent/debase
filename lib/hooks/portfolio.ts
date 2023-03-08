@@ -203,7 +203,7 @@ export const useAsyncPortfolio: usePortfolioFunc = (address) => {
 
 export const fetchUserChainList = async (address: string) => {
   try {
-    return await axios.get(`api/debank/user/used_chain_list?id=${address}`)
+    return await axios.get(`/api/debank/user/used_chain_list?id=${address}`)
   } catch (e) {
     console.log(e)
     return {
@@ -215,7 +215,7 @@ export const fetchUserChainList = async (address: string) => {
 
 export const fetchUserTokenList = async (address: string, is_all: boolean = false) => {
   try {
-    return await axios.get(`api/debank/user/all_token_list?id=${address}&is_all=${is_all}`)
+    return await axios.get(`/api/debank/user/all_token_list?id=${address}&is_all=${is_all}`)
   } catch (e) {
     console.log(e)
     return {
@@ -227,7 +227,7 @@ export const fetchUserTokenList = async (address: string, is_all: boolean = fals
 
 export const fetchUserProtocolList = async (address: string) => {
   try {
-    return await axios.get(`api/debank/user/all_complex_protocol_list?id=${address}`)
+    return await axios.get(`/api/debank/user/all_complex_protocol_list?id=${address}`)
   } catch (e) {
     console.log(e)
     return {
@@ -239,7 +239,7 @@ export const fetchUserProtocolList = async (address: string) => {
 
 export const fetchUserChainBalance = async (address: string, chain_id: string) => {
   try {
-    return await axios.get(`api/debank/user/chain_balance?id=${address}&chain_id=${chain_id}`)
+    return await axios.get(`/api/debank/user/chain_balance?id=${address}&chain_id=${chain_id}`)
   } catch (e) {
     console.log(e)
     return {
