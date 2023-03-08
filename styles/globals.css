@@ -445,6 +445,9 @@ main .page_content .content_header_info_wrap {
   height: 36px;
   width: 240px;
 }
+.history_content .text-sm{
+  font-size: 13px;
+}
 .search_input {
   height: 34px!important;
   line-height: 34px!important;

@@ -7,6 +7,7 @@ export type HistoryTrItem = {
   added: boolean
   content: string
   icon_url: string
+  token_id: string
 }
 /*export type HistoryTxItem = {
   eth_gas_fee: number
@@ -37,39 +38,48 @@ export type HistoryItemData = {
 
 export type HistoryItemProps = {
   data: HistoryItemData
+  clickFun: any
 }
 
-export default ({data}: HistoryItemProps) => {
+export default ({data, clickFun}: HistoryItemProps) => {
   //let title = moment(timestamp).format('YYYY-MM-DD hh:mm:ss');
   return (
     <div className="flex border-t-gray-200 first:border-t-0 border-t text-sm py-6 text-gray-800">
       <div className="text-gray-400 w-2/12">
         <div>{data.date}</div>
-        <div className="truncate  w-8/12 gap-1 flex">
+        <div className="w-8/12 gap-1 flex">
           {
             data.tx_logo !='' && (
               <img src={data.tx_logo} className="w-4 h-4 inline-block"/>
             )
           }
-          <a href={data.tx_url} target="_blank">{data.tx_id}</a>
+          <a className="truncate  w-10/12" href={data.tx_url} target="_blank">{data.tx_id}</a>
         </div>
       </div>
-      <div className="flex gap-1 w-3/12 leading-4">
-        <div className="w-1/12">
+      <div className="flex gap-1 w-3/12 leading-4 items-center">
+        <div className="w-[24px]">
           {
-            data.cate_logo=="" ? (<UserIcon className="w-6 h-6 text-gray-400" />)
+            data.cate_logo=="user" ? (<UserIcon className="w-6 h-6 text-gray-400" />)
             : (<img src={data.cate_logo} className="w-6 h-6 text-gray-400" />)
           }
           
         </div>
-        <div className="w-11/12">
-          <div className="text-gray-400 mb-1">{data.cate}</div>
-          <div className="truncate w-10/12">{data.taker}</div>
+        <div className="w-10/12">
+          {
+            data.cate_logo=="approval.svg" ? (
+              <div className="text-gray-400 mb-1 leading-8 truncate">{data.cate}</div>
+            ) : (
+              <>
+              <div className="text-gray-400 mb-1 truncate">{data.cate}</div>
+              <div className="truncate w-10/12">{data.taker}</div>
+              </>
+            )
+          }
         </div>
       </div>
       <div className="w-4/12 truncate flex flex-col">
         {(data.receives_sends).map((item, i) => (
-          <div className="flex gap-1">
+          <div className="flex gap-1 cursor-pointer" key={`receive${i}`} onClick={() => clickFun(item.token_id)}>
             <img src={item.icon_url} className="w-5 mt-1 h-5" />
             <div className={clsx(
               'border-b-gray-600 border-dashed border-b inline-block text-sm w-max leading-6',
