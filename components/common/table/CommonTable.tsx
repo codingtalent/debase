@@ -12,7 +12,7 @@ const getReward = (token: Token) => (
     {token.amount.toFixed(2)} {token.optimized_symbol} ({formatDollar((token.price * token.amount).toFixed(2), 2)})
   </div>
 )
-const CommonTable: FC = ({ groupedProtocol }: Props) => {
+const CommonTable: FC<Props> = ({ groupedProtocol }: Props) => {
   const firstRewardTokenList = groupedProtocol[0]?.detail?.reward_token_list ?? [];
   let headers: any[] = [
     { title: 'Pool' },
@@ -43,11 +43,11 @@ const CommonTable: FC = ({ groupedProtocol }: Props) => {
             <div className="flex-table-col">
               <div className="token-icons" style={{ width: tokenIconsWidth }}>
                 {
-                  supplyTokenList.map((t: Token, i: number) => {
-                    const tokenLogoStyle = { left: i * -8 };
+                  supplyTokenList.map((t: Token, i2: number) => {
+                    const tokenLogoStyle = { left: i2 * -8 };
                     const logoUrl = t.logo_url ?? 'https://assets.debank.com/static/media/default.b2295297.svg';
                     return (
-                      <img className="token-icon" src={logoUrl} style={tokenLogoStyle} alt=""/>
+                      <img key={`${t.optimized_symbol}_${i2}`} className="token-icon" src={logoUrl} style={tokenLogoStyle} alt=""/>
                     )
                   })
                 }
@@ -62,8 +62,8 @@ const CommonTable: FC = ({ groupedProtocol }: Props) => {
             </div>
             <div>
               {
-                supplyTokenList.map((t: Token) => (
-                  <div>
+                supplyTokenList.map((t: Token, i:number) => (
+                  <div key={`TokenSymbol_${i}`}>
                     {t.amount.toFixed(2)} {t.optimized_symbol}
                   </div>
                 ))
@@ -73,8 +73,8 @@ const CommonTable: FC = ({ groupedProtocol }: Props) => {
               rewardTokenList.length > 0 && (
                 <div>
                   {
-                    rewardTokenList.map((t: Token) => (
-                      <div>
+                    rewardTokenList.map((t: Token, i: number) => (
+                      <div key={`TokenReward_${i}`}>
                         {getReward(t)}
                       </div>
                     ))

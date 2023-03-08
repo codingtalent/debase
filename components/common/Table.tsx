@@ -1,12 +1,11 @@
 import type { FC } from 'react'
 
 interface TableHeader {
-  className: string;
+  className?: string;
   title: string;
 }
 interface Props {
   header: TableHeader[];
-  renderTableContent: () => FC;
   children: any
 }
 const Table: FC<Props> = ({ header, children }) => {

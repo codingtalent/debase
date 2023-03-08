@@ -21,9 +21,8 @@ const getTableByDetailType = (portfolioItem: PortfolioItem[], detailTypes: strin
   }
 }
 
-const ProtocolToken: FC = ({ protocol }: Props) => {
+const ProtocolToken: FC<Props> = ({ protocol }: Props) => {
   const groupedProtocols: GroupedProtocols = getGroupObject(protocol.portfolio_item_list, 'name');
-  console.log('groupedProtocols', groupedProtocols, protocol)
   
   return (
     <div className="protocol-item-container">
@@ -37,8 +36,8 @@ const ProtocolToken: FC = ({ protocol }: Props) => {
         </div>
       </div>
       {
-        Object.keys(groupedProtocols).map((name: string) => (
-          <div className="card-wrap">
+        Object.keys(groupedProtocols).map((name: string, i: number) => (
+          <div className="card-wrap" key={`CardWrap_${protocol.chain}_${protocol.name}_${i}`}>
 
             <div className="card-panel-header">
               <div className="card-protocol-name">

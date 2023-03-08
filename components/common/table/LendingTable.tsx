@@ -1,20 +1,21 @@
 import type { FC } from 'react'
+import { Fragment } from 'react'
 import { formatDollar } from '@lib/utils'
 import Table from '@components/common/Table'
-import {PortfolioItem, Protocol, Token} from '@lib/hooks/portfolio'
+import {PortfolioItem, Token} from '@lib/hooks/portfolio'
 
 interface Props {
   groupedProtocol: PortfolioItem[]
 }
-const LendingTable: FC = ({ groupedProtocol }: Props) => {
+const LendingTable: FC<Props> = ({ groupedProtocol }: Props) => {
   return (
     <>
       {
-        groupedProtocol.map((item: PortfolioItem) => {
+        groupedProtocol.map((item: PortfolioItem, i: number) => {
           const supplyTokenList = item.detail.supply_token_list ?? [];
           const rewardTokenList = item.detail.reward_token_list ?? [];
           return (
-            <>
+            <Fragment key={`LendingTable_${i}`}>
               <Table header={[
                 { title: 'Supplied' },
                 { title: 'Balance' },
@@ -82,7 +83,7 @@ const LendingTable: FC = ({ groupedProtocol }: Props) => {
                   </Table>
                 )
               }
-            </>
+            </Fragment>
           )
         })
       }

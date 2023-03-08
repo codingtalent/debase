@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
-import axios from 'axios'
+import axios, { AxiosResponse } from 'axios'
 import {useRouterOnReady} from '@lib/hooks/router'
 
 export type Chain = {
@@ -138,9 +138,6 @@ type apiData = {
   data: any;
   error?: string
 }
-type axiosResponse = {
-  data: apiData;
-}
 export const useAsyncPortfolio: usePortfolioFunc = () => {
   const [portfolio, setPortfolio] = useState<Portfolio>(initPortfolio);
   const [loading, setLoading] = useState<boolean>(true);
@@ -172,7 +169,7 @@ export const useAsyncPortfolio: usePortfolioFunc = () => {
 
       let {
         data: chains
-      }: axiosResponse = await fetchUserChainList(address);
+      } = await fetchUserChainList(address);
       if (!chains.data) {
         setLoading(false);
         setNoData(true);
@@ -183,7 +180,7 @@ export const useAsyncPortfolio: usePortfolioFunc = () => {
         chains.data[index] = { ...chain, usd_value: 0 };
         let {
           data: chainBalance
-        }: axiosResponse = await fetchUserChainBalance(address, chain.id);
+        } = await fetchUserChainBalance(address, chain.id);
         if (chainBalance.data) {
           chains.data[index].usd_value = chainBalance.data.usd_value
         }
@@ -191,7 +188,7 @@ export const useAsyncPortfolio: usePortfolioFunc = () => {
 
       let {
         data: tokens
-      }: axiosResponse = await fetchUserTokenList(address);
+      } = await fetchUserTokenList(address);
       if (!tokens.data) {
         setLoading(false);
         setNoData(true);
@@ -200,7 +197,7 @@ export const useAsyncPortfolio: usePortfolioFunc = () => {
 
       let {
         data: protocols
-      }: axiosResponse = await fetchUserProtocolList(address);
+      } = await fetchUserProtocolList(address);
       if (!protocols.data) {
         setLoading(false);
         setNoData(true);
