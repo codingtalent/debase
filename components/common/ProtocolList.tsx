@@ -4,9 +4,9 @@ import { useWalletTokenList, useProtocolList, useUserChainList, Chain, Token, Pr
 import { formatDollar } from '@lib/utils'
 
 const ProtocolList: FC = () => {
-  const protocolList: Protocol[] = useProtocolList();
-  const walletTokenList: Token[] = useWalletTokenList();
-  const userChainList: Chain = useUserChainList();
+  const protocolList = useProtocolList();
+  const walletTokenList = useWalletTokenList();
+  const userChainList = useUserChainList();
   if (!walletTokenList?.length || !userChainList?.length || !protocolList?.length) {
     return null
   }

@@ -1,10 +1,9 @@
 import type { FC } from 'react'
-import { useContext } from 'react'
 import { useUserChainList, Chain } from '@lib/hooks/portfolio'
 import { formatDollar } from '@lib/utils'
 
 const ChainList: FC = () => {
-  const userChainList: Chain = useUserChainList();
+  const userChainList = useUserChainList();
   if (!userChainList?.length) {
     return null
   }

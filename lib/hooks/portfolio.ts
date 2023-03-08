@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
 import axios from 'axios'
+import {useRouterOnReady} from '@lib/hooks/router'
 
 export type Chain = {
   /** The chain's id */
@@ -62,7 +63,28 @@ export type Protocol = {
   has_supported_portfolio: boolean;
   /** Custom field - amount of all item's asset usd value */
   asset_usd_value: number;
-  portfolio_item_list: any[];
+  portfolio_item_list: PortfolioItem[];
+}
+
+export type PortfolioItem = {
+  stats: {
+    asset_usd_value: number;
+    debt_usd_value: number;
+    net_usd_value: number;
+  };
+  name: string;
+  detail_types: string[];
+  detail: {
+    supply_token_list: Token[];
+    reward_token_list: Token[];
+    borrow_token_list: Token[];
+  },
+  pool: {
+    id: string;
+    chain: string;
+    project_id: string;
+    controller: string;
+  }
 }
 
 export type Portfolio = {
@@ -85,21 +107,21 @@ export const usePortfolio = () => {
   return portfolio ?? initPortfolio
 }
 
-export const useUserChainList = () => {
+export const useUserChainList = (): Chain[] => {
   const {
     UserChainList
   }: Portfolio = usePortfolio()
   return UserChainList ?? []
 }
 
-export const useWalletTokenList = () => {
+export const useWalletTokenList = (): Token[] => {
   const {
     WalletTokenList
   }: Portfolio = usePortfolio()
   return WalletTokenList ?? []
 }
 
-export const useProtocolList = () => {
+export const useProtocolList = (): Protocol[] => {
   const {
     ProtocolList
   }: Portfolio = usePortfolio()
@@ -108,11 +130,10 @@ export const useProtocolList = () => {
 
 export type usePortfolioReturn = {
   portfolio: Portfolio;
-  setPortfolio: any;
   loading: boolean;
-  setLoading: any;
+  noData: boolean;
 }
-type usePortfolioFunc = (address: string) => usePortfolioReturn
+type usePortfolioFunc = () => usePortfolioReturn
 type apiData = {
   data: any;
   error?: string
@@ -120,9 +141,18 @@ type apiData = {
 type axiosResponse = {
   data: apiData;
 }
-export const useAsyncPortfolio: usePortfolioFunc = (address) => {
+export const useAsyncPortfolio: usePortfolioFunc = () => {
   const [portfolio, setPortfolio] = useState<Portfolio>(initPortfolio);
   const [loading, setLoading] = useState<boolean>(true);
+  const [noData, setNoData] = useState<boolean>(false);
+  const {
+    routerReady,
+    router
+  } = useRouterOnReady();
+  const {
+    address
+  }: any = router.query;
+
   useEffect(() => {
     const fetchApi = async () => {
       /*const cachedData: any = window.localStorage.getItem('portfolio');
@@ -133,7 +163,10 @@ export const useAsyncPortfolio: usePortfolioFunc = (address) => {
       }*/
 
       if (!address) {
-        //setLoading(false)
+        if (routerReady) {
+          setLoading(false);
+          setNoData(true)
+        }
         return
       }
 
@@ -141,7 +174,8 @@ export const useAsyncPortfolio: usePortfolioFunc = (address) => {
         data: chains
       }: axiosResponse = await fetchUserChainList(address);
       if (!chains.data) {
-        setLoading(false)
+        setLoading(false);
+        setNoData(true);
         return
       }
 
@@ -159,7 +193,8 @@ export const useAsyncPortfolio: usePortfolioFunc = (address) => {
         data: tokens
       }: axiosResponse = await fetchUserTokenList(address);
       if (!tokens.data) {
-        setLoading(false)
+        setLoading(false);
+        setNoData(true);
         return
       }
 
@@ -167,7 +202,8 @@ export const useAsyncPortfolio: usePortfolioFunc = (address) => {
         data: protocols
       }: axiosResponse = await fetchUserProtocolList(address);
       if (!protocols.data) {
-        setLoading(false)
+        setLoading(false);
+        setNoData(true);
         return
       }
       for (let [index, protocol] of protocols.data.entries()) {
@@ -192,12 +228,11 @@ export const useAsyncPortfolio: usePortfolioFunc = (address) => {
     }
 
     fetchApi()
-  }, [address])
+  }, [address]);
   return {
     portfolio,
-    setPortfolio,
     loading,
-    setLoading,
+    noData
   }
 }
 

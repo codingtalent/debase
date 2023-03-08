@@ -630,7 +630,7 @@ main .page_content .content_header_info_wrap {
     @apply mt-8
   }
   .protocol-item-container .card-wrap {
-    @apply bg-white rounded-md box-border shadow
+    @apply bg-white rounded-md box-border shadow mt-4
   }
   .protocol-item-container .protocol-item-header {
     @apply flex items-center gap-2 mb-3 justify-between
@@ -674,13 +674,16 @@ main .page_content .content_header_info_wrap {
     color: #19233c;
     @apply flex items-center
   }
+  .protocol-item-container .card-wrap .card-panel-container .border-b.table-content-row:last-child {
+    @apply border-0
+  }
   .protocol-item-container .card-wrap .card-panel-container .table-content-row > div {
     padding: 7px 10px;
     font-size: 13px;
     @apply flex-1 font-bold
   }
   .protocol-item-container .card-wrap .card-panel-container .table-content-row > div.flex-table-col {
-    @apply flex gap-2 items-center flex-wrap
+    @apply flex gap-2 items-center flex-wrap relative
   }
   .protocol-item-container .card-wrap .card-panel-container .table-content-row > div:last-child {
     @apply text-right
@@ -691,7 +694,7 @@ main .page_content .content_header_info_wrap {
   .protocol-item-container .card-wrap .card-panel-container .table-content-row .token-icons .token-icon {
     width: 20px;
     height: 20px;
-    @apply relative
+    @apply relative rounded-full
   }
   
   .loading-icon {

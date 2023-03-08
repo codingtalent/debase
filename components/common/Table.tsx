@@ -11,7 +11,7 @@ interface Props {
 }
 const Table: FC<Props> = ({ header, children }) => {
   return (
-    <div>
+    <div className="mb-6">
       <div className="table-header">
         {header.map((h) => (
           <div key={h.title} className={h.className}>{h.title}</div>

@@ -4,8 +4,8 @@ import { useWalletTokenList, useUserChainList, Token, Chain } from '@lib/hooks/p
 import { formatDollar } from '@lib/utils'
 
 const WalletToken: FC = () => {
-  const walletTokenList: Token[] = useWalletTokenList();
-  const userChainList: Chain = useUserChainList();
+  const walletTokenList = useWalletTokenList();
+  const userChainList = useUserChainList();
   if (!walletTokenList?.length || !userChainList?.length) {
     return null
   }
