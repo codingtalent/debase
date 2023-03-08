@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import moment  from 'moment'
 import HistoryItem, { HistoryItemData, HistoryTrItem } from '@components/shared/HistoryItem'
-import Loading from '@components/common/Loading'
+import SkeletonCard from '@components/common/SkeletonCard'
 import {
   XCircleIcon
 } from '@heroicons/react/24/solid';
@@ -243,15 +243,11 @@ const History: FC = () => {
   }
 
   const loadingMoreIcon = (
-    <div className="h-full flex justify-center items-center">
-      <Loading  />
-    </div>
+    <SkeletonCard  />
   );
 
   const loadingIcon = (
-    <div className="h-full pt-4 flex justify-center items-center">
-      <Loading  />
-    </div>
+    <SkeletonCard  />
   );
 
   const loadMore = () => {
@@ -352,13 +348,12 @@ const History: FC = () => {
         }
       </div>
       { hasMoreData && (
-        <div onClick={ loadMore } className="w-full mx-auto mb-8 text-center">
-          <div className="btn btn-load-more inline-block">
-          {
-            loadingMore ?  loadingMoreIcon : 'Load More'
-          }
-          </div>
-        </div>)
+          loadingMore ? loadingMoreIcon : (
+            <div onClick={ loadMore } className="w-full mx-auto mb-8 text-center">
+              <div className="btn btn-load-more inline-block">Load More</div>
+            </div>
+          )
+        )
       }
     </div>
   )
