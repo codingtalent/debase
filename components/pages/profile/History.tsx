@@ -1,4 +1,5 @@
 import type { FC } from 'react'
+import { useRouter } from 'next/router'
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import moment  from 'moment'
@@ -216,6 +217,12 @@ const History: FC = () => {
   const [hasMoreData, setHasMoreData] = useState(false)
   const [isTokenChain, setIsTokenChain] = useState(false)
 
+  const router = useRouter()
+  let address: string  = router.query?.address as string
+  if (!address) {
+    address = process.env.NEXT_PUBLIC_DEFAULT_ADDRESS as string
+  }
+
   const loadingMoreIcon = (
     <div className="h-full flex justify-center items-center">
       <Loading  />
@@ -277,8 +284,6 @@ const History: FC = () => {
       console.log(dd)
     })()
   }*/
-
-  let address = '0x3ddfa8ec3052539b6c9549f12cea2c295cff5296'
 
   useEffect(() => {
     (async () => {
