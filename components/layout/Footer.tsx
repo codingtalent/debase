@@ -10,7 +10,7 @@ const Footer: FC = () => {
         <Image
             className="w-auto h-10 mt-2"
             src={Logo}
-            alt="Uniswap New Pools Watcher"
+            alt="DeBase"
           priority/>
         <div className="flex gap-4">
           <span>Find us on</span>

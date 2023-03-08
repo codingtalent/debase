@@ -25,7 +25,7 @@ const getCateInfo = (item: any, cate_dict: any, project_dict: any, token_dict: a
       else{
         symbol = token_dict[item.token_approve.token_id]['symbol']
       }
-      result.title = "Approve " + symbol + " for " + item.other_addr
+      result.title = "Approve infinite " + symbol + " for " + item.other_addr
       result.logo = "/approval.svg"
     }
     else if(typeof(cate_dict[item.cate_id]) != "undefined"){
@@ -40,6 +40,10 @@ const getCateInfo = (item: any, cate_dict: any, project_dict: any, token_dict: a
       result.taker = project.name
       result.logo = project.logo_url
     }
+  }
+  else{
+    result.title = "Contract Interaction"
+    result.logo = "/contract.svg"
   }
   return result
 }
@@ -79,14 +83,27 @@ const getGasFee = (tx: any, chain: string, token_dict: any) => {
 const getTrContent = (amount: number, token: any) => {
   let content = ''
   if(token){
-    content =  amount + token['symbol'] + ' (' + formatDollar(amount * token['price']) + ')'
+    if(token['price']){
+      content =  amount + " " + token['symbol'] + ' (' + formatDollar(amount * token['price']) + ')'
+    }
+    else{
+      content =  amount + " " + token['name']
+    }
   }
   return content
 }
 const getTokenIcon = (token: any) => {
   let logo = '/defaultToken.svg'
-  if(token && token['logo_url']){
-    logo = token['logo_url']
+  if(token){
+    if(token['logo_url']){
+      logo = token['logo_url']
+    }
+    else if(token['thumbnail_url']){
+      logo = token['thumbnail_url']
+    }
+    else{
+      logo = "/nft.png"
+    }
   }
   return logo
 }
@@ -97,7 +114,8 @@ const getTrItems = (item:any, token_dict:any) => {
       added: true,
       content: '+' + getTrContent(tr.amount, token_dict[tr.token_id]),
       icon_url: getTokenIcon(token_dict[tr.token_id]),
-      token_id: tr.token_id
+      token_id: tr.token_id,
+      is_price_token: token_dict[tr.token_id]["price"] != null
     })
   }
   for(let tr of item.sends){
@@ -105,7 +123,8 @@ const getTrItems = (item:any, token_dict:any) => {
       added: false,
       content: '-' + getTrContent(tr.amount, token_dict[tr.token_id]),
       icon_url: getTokenIcon(token_dict[tr.token_id]),
-      token_id: tr.token_id
+      token_id: tr.token_id,
+      is_price_token: token_dict[tr.token_id]["price"] != null
     })
   }
   return trItems
@@ -257,15 +276,18 @@ const History: FC = () => {
   }
 
 
-  const filterByToken = (token_id: string) => {
-    let token: any = tokenDict[token_id]
-    setTokenSymbol("Filter by Token: " + token['symbol'])
-    if(chain==""){
-      setIsTokenChain(true)
+  const filterByToken = (token_id: string, is_price_token: boolean) => {
+    if(is_price_token){
+      let token: any = tokenDict[token_id]
+      setTokenSymbol("Filter by Token: " + token['symbol'])
+      if(chain==""){
+        setIsTokenChain(true)
+      }
+      setChain(token['chain'])
+      setFilterToken(token_id)
     }
-    setChain(token['chain'])
-    setFilterToken(token_id)
   }
+
   const removeFilterToken = () => {
     setTokenSymbol("")
     if(isTokenChain){

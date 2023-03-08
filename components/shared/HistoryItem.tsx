@@ -8,6 +8,7 @@ export type HistoryTrItem = {
   content: string
   icon_url: string
   token_id: string
+  is_price_token: boolean
 }
 /*export type HistoryTxItem = {
   eth_gas_fee: number
@@ -79,7 +80,13 @@ export default ({data, clickFun}: HistoryItemProps) => {
       </div>
       <div className="w-4/12 truncate flex flex-col">
         {(data.receives_sends).map((item, i) => (
-          <div className="flex gap-1 cursor-pointer" key={`receive${i}`} onClick={() => clickFun(item.token_id)}>
+          <div className={clsx(
+            'flex gap-1',
+            {
+              'cursor-pointer ': item.is_price_token,
+              '': !item.is_price_token
+            }
+          )} key={`receive${i}`} onClick={() => clickFun(item.token_id, item.is_price_token)}>
             <img src={item.icon_url} className="w-5 mt-1 h-5" />
             <div className={clsx(
               'border-b-gray-600 border-dashed border-b inline-block text-sm w-max leading-6',
