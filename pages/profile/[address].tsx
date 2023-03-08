@@ -1,11 +1,15 @@
 import type { NextPage } from 'next'
 import React, { useContext, useEffect, useState } from 'react';
+import { useRouter } from 'next/router'
 import Head from 'next/head'
 import Image from 'next/image'
 import Header from '@components/layout/Header'
 import ProfileTabs from '@components/pages/profile/Tab'
 
 const Home: NextPage = () => {
+  const router = useRouter()
+  const { address } = router.query
+
   return (
     <div className="page_content">
       <Header />
@@ -24,7 +28,7 @@ const Home: NextPage = () => {
                   <div className='user_info'>
                     <div className="user_info_uid"><span className="user_info_uid_unset">No ID</span></div>
                     <div className="user_info_address">
-                      <span>0x3ddfa8ec3052539b6c9549f12cea2c295cff5296</span>
+                      <span>{address}</span>
                       <div className="user_info_address_copy">
                         <svg width="20px" height="20px" viewBox="0 0 20 20">
                           <g id="copy" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">

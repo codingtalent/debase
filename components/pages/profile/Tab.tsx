@@ -1,8 +1,8 @@
 import type { FC } from 'react'
 import { useState } from 'react'
 import { Tab } from '@headlessui/react'
-import Portfolio from '@components/pages/index/Portfolio'
-import History from '@components/pages/index/History'
+import Portfolio from '@components/pages/profile/Portfolio'
+import History from '@components/pages/profile/History'
 
 const ProfileTabs: FC = () => {
   const [selectedIndex, setSelectedIndex] = useState(0)
