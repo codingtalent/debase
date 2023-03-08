@@ -8,7 +8,10 @@ import ProfileTabs from '@components/pages/profile/Tab'
 
 const Home: NextPage = () => {
   const router = useRouter()
-  const { address } = router.query
+  let { address } = router.query
+  if (!address) {
+    address = process.env.NEXT_PUBLIC_DEFAULT_ADDRESS
+  }
 
   return (
     <div className="page_content">

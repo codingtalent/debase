@@ -8,13 +8,12 @@ const Footer: FC = () => {
     <footer className="footer border-t-gray-300 flex flex-col h-24 w-full items-center justify-center border-t">
       <div className="flex items-center justify-between w-9/12">
         <Image
-            className="w-auto h-20 mt-2"
+            className="w-auto h-10 mt-2"
             src={Logo}
             alt="Uniswap New Pools Watcher"
           priority/>
         <div className="flex gap-4">
-          <a href="#">Link 1</a>
-          <a href="#">Link 2</a>
+          <span>Find us on</span>
           <a href="#" target="_blank" rel="noopener nofollow noreferrer" className="">
               <svg width="24px" height="24px" viewBox="0 0 24 24">
                   <title>discord</title>
