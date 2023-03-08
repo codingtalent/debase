@@ -309,6 +309,7 @@ main .page_content .content_header_info_wrap {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  display: none;
 }
 .header_container .nav .nav_address {
   font-size: 18px;
