@@ -10,22 +10,9 @@ export type HistoryTrItem = {
   token_id: string
   is_price_token: boolean
 }
-/*export type HistoryTxItem = {
-  eth_gas_fee: number
-  usd_gas_fee: number
-  unit: string
-}
-export type HistoryItemData2 = {
-  date: string;
-  tx_hash: string;
-  type: string;
-  sender: string;
-  tr_content: string;
-  gas_fee: string;
-}*/
 export type HistoryItemData = {
   date: string
-  cate: string//cate id null, pick tx name
+  cate: string //cate id null, pick tx name
   taker: string
   cate_logo: string
   gas_fee: string
@@ -43,7 +30,6 @@ export type HistoryItemProps = {
 }
 
 export default ({data, clickFun}: HistoryItemProps) => {
-  //let title = moment(timestamp).format('YYYY-MM-DD hh:mm:ss');
   return (
     <div className="flex border-t-gray-200 first:border-t-0 border-t text-sm py-6 text-gray-800">
       <div className="text-gray-400 w-2/12">

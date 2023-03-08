@@ -131,10 +131,6 @@ const getTrItems = (item:any, token_dict:any) => {
 }
 
 const getTxInfo = (id: string, chain: string) => {
-  // https://bttcscan.com/tx/0x6ac4c1cb707b55cc49bb3228e29952fb26702782ef46e967ad58dadabc698100
-  //      https://etherscan.io/tx/0x29fc058954a0a4b661d7b601c3765e8735b38f486ef901ffe8b380a1169155ab
-  //      https://arbiscan.io/tx/0xab429275d0bf902be340865d0e2062d21d91f9d77e0059f74ff3f50773787c10
-  //      https://polygonscan.com/tx/0x6e2d4979be8a88e85d22dac4f6f9fc7510aa07d8f9b1cc15f00f385b1d79d2de
   let result: any = {
     url: '',
     logo: ''
@@ -169,7 +165,6 @@ const getTxInfo = (id: string, chain: string) => {
 }
 let tokenDict:any = {}
 const fetchHistoryData = async (address: string, chain: string, timestamp: number=0, token: string='') => {
-  //http://localhost:3000/api/debank/user/all_history_list?id=0x3ddfa8ec3052539b6c9549f12cea2c295cff5296
   let param = "?id=" + address
   let action = 'all_history_list'
   if(timestamp > 0){
@@ -219,9 +214,7 @@ const fetchHistoryData = async (address: string, chain: string, timestamp: numbe
 
 
 const fetchTokenData = async (keyword: string, chain: string) => {
-  //https://api.debank.com/history/token_search?chain=bsc&q=te
   let param = "?chain=" + chain + "&q=" + keyword
-  //let historyList: HistoryItemData[] = []
   const res = await axios.get("/api/debank/history/token_search" + param).catch(function (error) {
     return { data: { data: {}}}
   })
@@ -301,17 +294,6 @@ const History: FC = () => {
     }
     setFilterToken("")
   }
-  
-
-  /*const searchToken = (e: React.ChangeEvent<HTMLInputElement>) => {
-    //e.preventDefault()
-    let keyword = e.target.value;
-
-    (async () => {
-      let dd = await fetchTokenData(keyword, 'arbx')
-      console.log(dd)
-    })()
-  }*/
 
   useEffect(() => {
     (async () => {
