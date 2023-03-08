@@ -3,7 +3,6 @@
 @tailwind utilities;
 
 html {
-  @apply overflow-y-scroll;
   height: 100%;
 }
 
@@ -404,6 +403,7 @@ main .page_content .content_header_info_wrap {
 .header_container .login {
   position: relative;
   margin-left: 20px;
+  display: none;
 }
 .header_container .login_button {
   color: #fff;
