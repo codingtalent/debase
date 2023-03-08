@@ -134,6 +134,7 @@ const getTxInfo = (id: string, chain: string) => {
   // https://bttcscan.com/tx/0x6ac4c1cb707b55cc49bb3228e29952fb26702782ef46e967ad58dadabc698100
   //      https://etherscan.io/tx/0x29fc058954a0a4b661d7b601c3765e8735b38f486ef901ffe8b380a1169155ab
   //      https://arbiscan.io/tx/0xab429275d0bf902be340865d0e2062d21d91f9d77e0059f74ff3f50773787c10
+  //      https://polygonscan.com/tx/0x6e2d4979be8a88e85d22dac4f6f9fc7510aa07d8f9b1cc15f00f385b1d79d2de
   let result: any = {
     url: '',
     logo: ''
@@ -147,7 +148,10 @@ const getTxInfo = (id: string, chain: string) => {
       url = "https://bttcscan.com/tx/"
       break
     case 'eth':
-      url = "https://etherscan.io/"
+      url = "https://etherscan.io/tx/"
+      break
+    case 'matic':
+      url = 'https://polygonscan.com/tx/'
       break
     default:
       url = "https://bscscan.com/tx/"
@@ -243,8 +247,12 @@ const History: FC = () => {
   }
 
   const loadingMoreIcon = (
-    <SkeletonCard  />
+    <div className="h-full flex justify-center items-center">
+      <SkeletonCard  />
+    </div>
   );
+ 
+
 
   const loadingIcon = (
     <SkeletonCard  />

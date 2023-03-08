@@ -83,16 +83,15 @@ export default ({data, clickFun}: HistoryItemProps) => {
           <div className={clsx(
             'flex gap-1',
             {
-              'cursor-pointer ': item.is_price_token,
-              '': !item.is_price_token
+              'cursor-pointer ': item.is_price_token
             }
           )} key={`receive${i}`} onClick={() => clickFun(item.token_id, item.is_price_token)}>
             <img src={item.icon_url} className="w-5 mt-1 h-5" />
             <div className={clsx(
-              'border-b-gray-600 border-dashed border-b inline-block text-sm w-max leading-6',
+              'border-b-gray-600 border-dashed inline-block text-sm w-max leading-6',
               {
                 'text-green-600 ': item.added,
-                '': !item.added
+                'border-b': item.is_price_token
               }
             )}>{item.content}</div>
           </div>
