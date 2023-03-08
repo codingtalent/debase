@@ -9,3 +9,5 @@ export const formatDollar = (usd: number, minimumFractionDigits: number = 0) => 
     currency: 'USD'
   }).format(usd)
 )
+
+export const formatShortAddress = (address: string) => `${address.substring(0, 6)}...${address.substring(address.length - 4)}`

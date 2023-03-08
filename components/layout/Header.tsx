@@ -1,6 +1,11 @@
 import type { FC } from 'react'
+import { useRouter } from 'next/router'
+import { formatShortAddress } from '@lib/utils'
 
 const Header: FC = () => {
+  const router = useRouter()
+  const { address } = router.query
+
   return (
     <header className="header">
       <div className='header_container'>
@@ -10,7 +15,7 @@ const Header: FC = () => {
               <path d="M16 6H3.41399L7.70699 1.707C8.09699 1.317 8.09699 0.683997 7.70699 0.292997C7.31699 -0.0980028 6.68399 -0.0970028 6.29299 0.292997L0.292988 6.293C-0.0970117 6.683 -0.0970117 7.316 0.292988 7.707L6.29299 13.707C6.48799 13.902 6.74299 14 6.99999 14C7.25699 14 7.51199 13.902 7.70699 13.707C8.09699 13.317 8.09699 12.684 7.70699 12.293L3.41399 8H16C16.553 8 17 7.553 17 7C17 6.447 16.553 6 16 6Z" fill="currentColor"></path>
             </svg>
           </div>
-          <h1 className="nav_address">0x3ddf...5296</h1>
+          <h1 className="nav_address">{formatShortAddress(address as string)}</h1>
         </div>
         <div className='option'>
           <div className="search">

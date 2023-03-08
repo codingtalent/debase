@@ -103,6 +103,7 @@ body {
 .main .page_content .content_header {
   background: #fafbfc;
   padding-top: 32px;
+  padding-bottom: 12px;
 }
 
 main .page_content .content_header_info_wrap {
@@ -200,6 +201,7 @@ main .page_content .content_header_info_wrap {
   gap: 8px;
   display: flex;
   flex-wrap: wrap;
+  visibility: hidden;
 }
 .main .page_content .user_info_address_tags .db-user-tag-list .db-user-tag {
   border: 1px solid #e1e5f2;
