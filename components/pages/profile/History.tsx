@@ -3,7 +3,7 @@ import { useRouter } from 'next/router'
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import moment  from 'moment'
-import HistoryItem, { HistoryItemData, HistoryTrItem } from '@components/shared/HistoryItem'
+import HistoryItem, { HistoryItemData, HistoryTrItem } from '@components/pages/profile/HistoryItem'
 import SkeletonCard from '@components/common/SkeletonCard'
 import {
   XCircleIcon
