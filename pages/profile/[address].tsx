@@ -1,8 +1,6 @@
 import type { NextPage } from 'next'
 import React, { useContext, useEffect, useState } from 'react';
 import { useRouter } from 'next/router'
-import Head from 'next/head'
-import Image from 'next/image'
 import Header from '@components/layout/Header'
 import ProfileTabs from '@components/pages/profile/Tab'
 
@@ -67,7 +65,6 @@ const Home: NextPage = () => {
                 </div>
               </div>
               <div className='content_header_info_right'>
-                
               </div>
             </div>
           </div>
