@@ -101,7 +101,7 @@ const getTokenIcon = (token: any) => {
     else if(token['thumbnail_url']){
       logo = token['thumbnail_url']
     }
-    else{
+    else if(!token['price']){
       logo = "/nft.png"
     }
   }
@@ -283,12 +283,14 @@ const History: FC = () => {
   const filterByToken = (token_id: string, is_price_token: boolean) => {
     if(is_price_token){
       let token: any = tokenDict[token_id]
-      setTokenSymbol("Filter by Token: " + token['symbol'])
-      if(chain==""){
-        setIsTokenChain(true)
+      if(token){
+        setTokenSymbol("Filter by Token: " + token['symbol'])
+        if(chain==""){
+          setIsTokenChain(true)
+        }
+        setChain(token['chain'])
+        setFilterToken(token_id)
       }
-      setChain(token['chain'])
-      setFilterToken(token_id)
     }
   }
 
